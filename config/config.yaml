@@ -1,0 +1,65 @@
+# Federated Learning Configuration
+
+# Server Configuration
+server:
+  host: "127.0.0.1"
+  port: 8080
+  max_rounds: 10
+  clients_per_round: 3
+  min_available_clients: 2
+
+# Client Configuration
+client:
+  local_epochs: 5
+  batch_size: 32
+  learning_rate: 0.001
+  optimizer: "adam"
+  validation_split: 0.2
+
+# Model Configuration
+model:
+  type: "heart_disease"  # Options: heart_disease, diabetes, cancer
+  architecture: "neural_network"  # Options: neural_network, random_forest, svm
+  input_features: 13
+  hidden_layers: [64, 32]
+  activation: "relu"
+  dropout: 0.3
+
+# Federated Learning Algorithm
+algorithm:
+  type: "fedavg"  # Options: fedavg, fedprox
+  aggregation_method: "weighted_average"
+  
+# Privacy Configuration
+privacy:
+  enable_differential_privacy: true
+  epsilon: 1.0
+  delta: 0.00001
+  noise_type: "gaussian"
+  
+# Communication
+communication:
+  protocol: "grpc"
+  timeout: 30
+  max_retries: 3
+  compression: true
+
+# Logging
+logging:
+  level: "INFO"
+  format: "detailed"
+  log_file: "logs/federated_learning.log"
+  
+# Data Configuration
+data:
+  data_dir: "data/"
+  test_size: 0.2
+  random_state: 42
+  normalize: true
+  
+# Monitoring
+monitoring:
+  enable_metrics: true
+  metrics_port: 9090
+  save_checkpoints: true
+  checkpoint_dir: "models/checkpoints/"
