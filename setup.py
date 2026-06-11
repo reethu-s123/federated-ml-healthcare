@@ -1,10 +1,22 @@
 from setuptools import setup, find_packages
+import os
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+# Get the directory where setup.py is located
+here = os.path.abspath(os.path.dirname(__file__))
 
-with open("requirements.txt", "r", encoding="utf-8") as fh:
-    requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
+# Read README.md with error handling
+try:
+    with open(os.path.join(here, "README.md"), "r", encoding="utf-8") as fh:
+        long_description = fh.read()
+except FileNotFoundError:
+    long_description = "Federated Machine Learning for Privacy-Preserving Smart Healthcare Applications"
+
+# Read requirements.txt with error handling
+try:
+    with open(os.path.join(here, "requirements.txt"), "r", encoding="utf-8") as fh:
+        requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
+except FileNotFoundError:
+    requirements = []
 
 setup(
     name="federated-ml-healthcare",
